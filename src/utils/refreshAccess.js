@@ -1,5 +1,5 @@
 export async function refreshAccess() {
-  const result = await fetch("https://shrinkifybackend.vercel.app/refresh", {
+  const result = await fetch("https://shrinkifybackend.netlifly.app/refresh", {
     method: "GET",
     credentials: "include",
   });
