@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upgrade to Plus</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="subscription.css" />
+  </head>
+  <body>
+    <div class="subscription-container">
+      <div class="subscription-box">
+        <div class="left-section">
+          <h1>Upgrade to Plus</h1>
+          <p>
+            Do more with unlimited blocks, files, automations & integrations.
+          </p>
+
+          <form>
+            <label>Billed To</label>
+            <input type="text" placeholder="Account Name" required />
+
+            <label>Payment Details</label>
+            <div class="payment-options">
+              <button type="button" class="active">💳 Credit Card</button>
+              <button type="button">🏦 Bank Transfer</button>
+              <button type="button">✨ Cosmic Points</button>
+            </div>
+
+            <input type="text" placeholder="Card Number" />
+            <div class="card-details">
+              <input type="text" placeholder="MM/YY" />
+              <input type="text" placeholder="CVV" />
+            </div>
+            <input type="text" placeholder="Country" />
+            <input type="text" placeholder="Postal Code" />
+
+            <div class="form-actions">
+              <button type="button" class="cancel-btn">Cancel</button>
+              <button type="submit" class="subscribe-btn">Subscribe</button>
+            </div>
+            <p class="terms">
+              By providing your card information, you allow us to charge your
+              card for future payment in accordance with their terms.
+            </p>
+          </form>
+        </div>
+
+        <div class="right-section">
+          <div class="plan-box">
+            <h3>Starter Plan</h3>
+            <label class="radio-option"
+              ><input type="radio" name="plan" /> Pay Monthly
+              <span>$20 / Month / Member</span></label
+            >
+            <label class="radio-option selected"
+              ><input type="radio" name="plan" checked /> Pay Annual
+              <span>$16 / Month / Member <strong>Save 15%</strong></span></label
+            >
+            <div class="total">
+              <p>Total</p>
+              <h2>$16 / Month</h2>
+            </div>
+            <p class="secure-note">
+              🔒 Guaranteed to be safe & secure, ensuring all transactions are
+              protected with the highest level of security.
+            </p>
+          </div>
+          <img src="subscription-illustrationg" alt="Plan Illustration" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
