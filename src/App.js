@@ -15,11 +15,12 @@ export default function App() {
     (async function () {
       try {
         const result = await refreshAccess();
-
+console.log(result);
         if (result.message === "not valid refreshtoken") {
           setView("home");
           return;
         }
+        
         setUser(result.user);
         setUser(result);
         setLogout(true);
