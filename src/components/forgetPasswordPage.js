@@ -20,7 +20,7 @@ export function ForgetPasswordPage({ setView, email, setEmail, setMessage }) {
     }
     try {
       setView("loading");
-      const res = await fetch("http://127.0.0.1:8000/auth/forgetpassword", {
+      const res = await fetch("https://shrinkifybackend.vercel.app/auth/forgetpassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
