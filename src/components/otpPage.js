@@ -42,7 +42,7 @@ export function OtpPage({ email = "", setView, message }) {
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/auth/otpverification", {
+      const res = await fetch("https://shrinkifybackend.vercel.app/auth/otpverification", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
