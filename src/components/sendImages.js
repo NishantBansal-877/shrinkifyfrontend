@@ -4,7 +4,7 @@ export function SendImages({ quality, selectedImages, setView, setLogout, setSel
   async function sendToServer(e) {
     e.preventDefault();
 
-    const result = await fetch("http://127.0.0.1:8000/shrink", {
+    const result = await fetch("https://shrinkifybackend.vercel.app/shrink", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
