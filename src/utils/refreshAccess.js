@@ -1,5 +1,5 @@
 export async function refreshAccess() {
-  const result = await fetch("http://127.0.0.1:8000/refresh", {
+  const result = await fetch("https://shrinkifybackend.vercel.app/refresh", {
     method: "GET",
     credentials: "include",
   });
