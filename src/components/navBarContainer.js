@@ -24,7 +24,7 @@ export function NavbarContainer({ setView, user, logout, setLogout }) {
           <a
             href="#hero"
             onClick={async () => {
-              const result = await fetch("http://127.0.0.1:8000/logout", {
+              const result = await fetch("https://shrinkifybackend.vercel.app/logout", {
                 method: "GET",
                 credentials: "include",
               });
