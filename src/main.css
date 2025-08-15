@@ -200,20 +200,7 @@ body {
   text-align: center;
   margin-bottom: 30px;
 }
-@media (max-width: 768px) {
-  .welcomeText{
-    display:none;
-      }
-  .contact-btn{
-display:none;
-  }
-  .hero-title{
-  width: 80%;
-  }
-  .upload-section{
- max-width: calc(min(700px, 80%));
-  }
-}
+
 .upload-section h1 {
   color: #6d28d9;
   font-size: 2rem;
@@ -672,7 +659,23 @@ button:hover {
   width: 50px !important;
   text-align: center;
 }
-
+@media (max-width: 768px) {
+  .welcomeText{
+    display:none;
+      }
+  .contact-btn{
+display:none;
+  }
+  .hero-title{
+  width: 80%;
+  }
+  .upload-section{
+ max-width: calc(min(700px, 80%));
+  }
+  .otp-inputs input{
+width: 32px !important;
+  }
+}
 /* Fullscreen overlay */
 #loading-overlay {
   position: fixed;
