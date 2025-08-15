@@ -664,7 +664,7 @@ button:hover {
   .welcomeText{
     display:none;
       }
-  .contact-btn{
+  #contact-btn{
 display:none;
   }
   .hero-title{
