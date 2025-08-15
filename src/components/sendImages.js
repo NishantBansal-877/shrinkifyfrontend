@@ -14,7 +14,7 @@ export function SendImages({ quality, selectedImages, setView, setLogout, setSel
     });
 
     const data = JSON.parse(await result.text());
-    console.log(data);
+    
 
     if (data.message === "not valid access") {
       alert("try again!!!");
