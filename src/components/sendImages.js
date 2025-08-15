@@ -39,6 +39,11 @@ export function SendImages({ quality, selectedImages, setView, setLogout, setSel
       setTimeout(() => setView("preview"), 3000);
       return;
     } 
+    if(data.message === "Error compressing images"){
+       setShowNotif(true);
+    setNotifyMsg(data.message);
+    setView("home");
+    }
     
     // Default case
     setShowNotif(true);
