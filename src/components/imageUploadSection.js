@@ -26,6 +26,7 @@ export function ImageUploadSection({ setView, setSelectedImages,setShowNotif,set
     if (!allowedTypes.includes(fileExt)) {
       setShowNotif(true);
       setNotifyMsg(`File type not allowed: ${file.name}`);
+      filesLoaded++;
       return; // skip this file
     }
 
@@ -37,7 +38,6 @@ export function ImageUploadSection({ setView, setSelectedImages,setShowNotif,set
         { name: file.name, file: base64StringFile, fileType: fileExt }
       ]);
 
-      filesLoaded++;
       if (filesLoaded === totalFiles) {
         setView("loading");
         setTimeout(() => {
