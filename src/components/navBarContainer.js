@@ -28,7 +28,7 @@ export function NavbarContainer({ setView, user, logout, setLogout, setShowNotif
         {/* <a href="#hero" onClick={() => setView("pricing")}>
           Pricing
         </a> */}
-        {logout && <a href="#contact">Contacts</a>}
+        {logout && <a id="contact-btn" href="#contact">Contacts</a>}
         {!logout ? (
           <a href="#hero" onClick={() => setView("login")}>
             Login/SignUp
