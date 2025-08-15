@@ -413,7 +413,7 @@ footer {
 }
 
 .login-container {
-  width:100%;
+  width:40%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -653,11 +653,11 @@ button:hover {
 .otp-inputs {
   display: flex;
   gap: 10px;
-  justify-content:space-between;
+  justify-content:center;
 }
 
 .otp-inputs input {
-  width: 50px ;
+  width: 50px;
   text-align: center;
 }
 @media (max-width: 768px) {
@@ -669,6 +669,12 @@ display:none;
   }
   .hero-title{
   width: 80%;
+  }
+  .login-container{
+width:100%;
+  }
+  .otp-inputs input{
+  width: 50px;
   }
   .upload-section{
  max-width: calc(min(700px, 80%));
