@@ -8,7 +8,7 @@ export function NavbarContainer({ setView, user, logout, setLogout, setShowNotif
           setView("home");
         }}
       >
-        ⚡ SHRINKER
+        ⚡ SHRINKIFY
       </span>
       {logout && (
         <span className="welcomeText">
