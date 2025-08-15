@@ -1,69 +1,65 @@
-// Hero.jsx
-import { useState } from "react";
-import { ImageUploadSection } from "./imageUploadSection";
-import { Alert } from "./alert";
-import { ShowSelectedImages } from "./selectedImages";
-import Pricing from "./pricing";
-import OtpPage from "./otpPage";
-import { Preview } from "./preview";
-import LoadingOverlay from "./loadingOverlay";
-import { ForgetPasswordPage } from "./forgetPasswordPage";
-import Login from "./login";
-import Signup from "./signup";
+export function ImageUploadSection({ setView, setSelectedImages }) {
+  function uploadedImages(e) {
+    if (e.target.files.length > 5) {
+      setView("alert");
+      return;
+    }
+    const files = Array.from(e.target.files);
+    let filesLoaded = 0;
+    const totalFiles = files.length;
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64StringFile = reader.result.split(",")[1];
+        setSelectedImages((prev) => [...prev, { name: file.name, file: base64StringFile, fileType: file.type.split("/")[1] }]);
 
-export function Hero({ view, setView, setUser, setLogout, email, setEmail, setShowNotif, setNotifyMsg, selectedImages, setSelectedImages }) {
-  const [quality, setQuality] = useState(10);
-  const [previewImages, setPreviewImages] = useState({});
-  const [message, setMessage] = useState(null);
-  const heroViews = {
-    alert: <Alert setView={setView} />,
-    // auth: (
-    //   <LoginAndSignup
-    //     setView={setView}
-    //     setLogout={setLogout}
-    //     setUser={setUser}
-    //     setEmail={setEmail}
-    //     setMessage={setMessage}
-    //     setShowNotif={setShowNotif}
-    //     setNotifyMsg={setNotifyMsg}
-    //   />
-    // ),
-    forget: (
-      <ForgetPasswordPage
-        setView={setView}
-        email={email}
-        setEmail={setEmail}
-        setMessage={setMessage}
-        setShowNotif={setShowNotif}
-        setNotifyMsg={setNotifyMsg}
-      />
-    ),
-    home: <ImageUploadSection setView={setView} setSelectedImages={setSelectedImages} />,
-    loading: <LoadingOverlay />,
-    login: <Login setLogout={setLogout} setNotifyMsg={setNotifyMsg} setShowNotif={setShowNotif} setUser={setUser} setView={setView} />,
-    otpPage: <OtpPage email={email} setView={setView} message={message} setShowNotif={setShowNotif} setNotifyMsg={setNotifyMsg} />,
-    pricing: <Pricing />,
-    preview: <Preview previewImages={previewImages} />,
-    signup: <Signup setEmail={setEmail} setMessage={setMessage} setNotifyMsg={setNotifyMsg} setShowNotif={setShowNotif} setView={setView} />,
-    selectedImages: (
-      <ShowSelectedImages
-        quality={quality}
-        setQuality={setQuality}
-        selectedImages={selectedImages}
-        setSelectedImages={setSelectedImages}
-        setView={setView}
-        setLogout={setLogout}
-        setPreviewImages={setPreviewImages}
-        setShowNotif={setShowNotif}
-        setNotifyMsg={setNotifyMsg}
-      />
-    ),
-  };
+        filesLoaded++;
+        if (filesLoaded === totalFiles) {
+          setView("loading");
+          setTimeout(() => {
+            setView("selectedImages");
+          }, 3000);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+    e.target.value = null;
+  }
 
   return (
-    <header className="hero" id="hero">
-      {heroViews[view]}
-    </header>
+    <>
+      <h1 class="hero-title">Shrinkify — Lightning Fast Image Compression</h1>
+      <p class="hero-subtitle" style={{ color: "white" }}>
+        Upload your images and get perfectly optimized files in seconds. No quality loss, just smaller sizes.
+      </p>
+      <section className="upload-section">
+        <h1>Compress Your Images Instantly</h1>
+        <p>Smart, fast & free image compression without losing quality.</p>
+        <label className="upload-btn" htmlFor="fileElem" contentEditable={false}>
+          Upload Image
+        </label>
+        <label className="drop-area" id="drop-area" htmlFor="fileElem">
+          <p>
+            Drag & drop image here or <span className="browse">browse</span>
+          </p>
+          <input type="file" id="fileElem" accept="image/*" onChange={uploadedImages} multiple />
+        </label>
+        <p>Upload only 5 images at a time.</p>
+        <div class="upload-features">
+          <div class="upload-feature">
+            <span>⚡</span>
+            <p>Lightning Fast Compression</p>
+          </div>
+          <div class="upload-feature">
+            <span>🎯</span>
+            <p>No Quality Loss</p>
+          </div>
+          <div class="upload-feature">
+            <span>🛡️</span>
+            <p>Secure & Private</p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
-export default Hero;
