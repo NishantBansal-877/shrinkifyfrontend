@@ -653,10 +653,11 @@ button:hover {
 .otp-inputs {
   display: flex;
   gap: 10px;
+  justify-content:center;
 }
 
 .otp-inputs input {
-  width: 50px !important;
+  width: 50px ;
   text-align: center;
 }
 @media (max-width: 768px) {
