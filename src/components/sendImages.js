@@ -21,7 +21,8 @@ export function SendImages({ quality, selectedImages, setView, setLogout, setSel
     });
 
     const data = JSON.parse(await result.text());
-    console.log(data.message);
+      setShowNotif(true);
+    setNotifyMsg(data.message);
 
     if (data.message === "not valid access") {
       setShowNotif(true);
