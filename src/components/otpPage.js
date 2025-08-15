@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export function OtpPage({ email = "", setView, message }) {
+export function OtpPage({ email = "", setView, message, setShowNotif, setNotifyMsg }) {
   const otpRefs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
   const formRef = useRef(null);
 
@@ -35,13 +35,16 @@ export function OtpPage({ email = "", setView, message }) {
     let otp = "";
     for (const pair of fd.entries()) {
       if (!pair[1]) {
-        alert("Missing OTP number");
+        setShowNotif(true);
+        setNotifyMsg("Missing OTP number");
+        // alert("Missing OTP number");
         return;
       }
       otp += pair[1];
     }
 
     try {
+      setView("loading");
       const res = await fetch("https://shrinkifybackend.vercel.app/auth/otpverification", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -64,12 +67,16 @@ export function OtpPage({ email = "", setView, message }) {
       const msg = data.message || data;
 
       if (msg === "login successful" || msg === "signup successful" || msg === "new password created") {
-        setView("loading");
-        setTimeout(() => setView("auth"), 3000);
+        setShowNotif(true);
+        setNotifyMsg(msg);
+        setTimeout(() => setView("login"), 3000);
       }
     } catch (err) {
       console.error(err);
-      alert("Network error verifying OTP");
+      setShowNotif(true);
+      setNotifyMsg("Network error verifying OTP");
+      setView("login");
+      // alert("Network error verifying OTP");
     }
   }
 
