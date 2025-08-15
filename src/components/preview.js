@@ -1,34 +1,43 @@
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+
 export function Preview({ previewImages }) {
-  function handleDownload(file, name, fileType) {
-    // e.preventDefault();
-    const link = document.createElement("a");
-    link.href = `data:${fileType};base64,${file}`;
-    link.download = name;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  async function handleDownload(file, name, fileType) {
+    const zip = new JSZip();
+    zip.file(name, file, { base64: true, binary: true });
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, `${name}.zip`);
   }
-  function handleAllDownload(previewImages) {
+
+  async function handleAllDownload(previewImages) {
+    const zip = new JSZip();
+
     previewImages.images.forEach((image) => {
-      const link = document.createElement("a");
-      link.href = `data:${image.fileType};base64,${image.file}`;
-      link.download = image.name;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      zip.file(image.name, image.file, { base64: true, binary: true });
     });
+
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, "images.zip");
   }
+
   const lastIdx = previewImages.images.length - 1;
+
   return (
     <div className="preview-section-wrapper">
       {previewImages.images.length > 0 && (
         <div className="preview-section">
           {previewImages.images.map((image, idx) => (
-            <div className={`preview-box ${idx === lastIdx && lastIdx % 2 === 0 ? "isOdd" : ""}`} key={idx}>
+            <div
+              className={`preview-box ${idx === lastIdx && lastIdx % 2 === 0 ? "isOdd" : ""}`}
+              key={idx}
+            >
               <img src={`data:${image.fileType};base64,${image.file}`} alt={image.name} />
               <p className="image-name">{image.name}</p>
               <div className="button-group">
-                <button className="action-button download-button" onClick={() => handleDownload(image.file, image.name, image.fileType)}>
+                <button
+                  className="action-button download-button"
+                  onClick={() => handleDownload(image.file, image.name, image.fileType)}
+                >
                   Download
                 </button>
               </div>
