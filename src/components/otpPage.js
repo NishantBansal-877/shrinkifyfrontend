@@ -101,7 +101,7 @@ export function OtpPage({ email = "", setView, message, setShowNotif, setNotifyM
                   maxLength={1}
                   onChange={(e) => handleChange(e, i)}
                   onKeyDown={(e) => handleKeyDown(e, i)}
-                  style={{ width: 40, textAlign: "center" }}
+                  style={{textAlign: "center" }}
                 />
               ))}
             </div>
