@@ -653,7 +653,7 @@ button:hover {
 .otp-inputs {
   display: flex;
   gap: 10px;
-  justify-content:center;
+  justify-content:space-between;
 }
 
 .otp-inputs input {
@@ -672,9 +672,6 @@ display:none;
   }
   .upload-section{
  max-width: calc(min(700px, 80%));
-  }
-  .otp-inputs input{
-width: 32px !important;
   }
 }
 /* Fullscreen overlay */
