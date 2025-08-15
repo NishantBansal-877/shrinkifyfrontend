@@ -15,7 +15,7 @@ export default function App() {
     (async function () {
       try {
         const result = await refreshAccess();
-console.log(result);
+
         if (result.message === "Invalid refresh token") {
           setView("home");
           return;
