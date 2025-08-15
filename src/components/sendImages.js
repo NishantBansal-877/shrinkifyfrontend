@@ -1,9 +1,9 @@
 import { refreshAccess } from "../utils/refreshAccess";
 
-export function SendImages({ quality, selectedImages, setView, setLogout, setSelectedImaages, setPreviewImages }) {
+export function SendImages({ quality, selectedImages, setView, setLogout, setSelectedImaages, setPreviewImages, setShowNotif, setNotifyMsg }) {
   async function sendToServer(e) {
     e.preventDefault();
-
+    setView("loading");
     const result = await fetch("https://shrinkifybackend.vercel.app/shrink", {
       method: "POST",
       headers: {
@@ -14,27 +14,26 @@ export function SendImages({ quality, selectedImages, setView, setLogout, setSel
     });
 
     const data = JSON.parse(await result.text());
-    
-
+    console.log(data.message);
     if (data.message === "not valid access") {
-      alert("try again!!!");
-      const result = await refreshAccess();
-
-      if (result.message === "not valid refreshtoken") {
-        setView("auth");
-        setSelectedImaages([]);
-        return;
-      }
+      setShowNotif(true);
+      setNotifyMsg("Log in first!!!");
       setLogout(false);
-      setView("home");
+      setView("login");
       setSelectedImaages([]);
 
       return;
+    } else if (data.message === "send compressed images") {
+      setSelectedImaages([]);
+      setPreviewImages(() => data);
+      setView("loading");
+      setTimeout(() => setView("preview"), 3000);
+      return;
+    } else {
+      setShowNotif(true);
+      setNotifyMsg(data.message);
+      setView("home");
     }
-    setView("loading");
-    setSelectedImaages([]);
-    setPreviewImages(() => data);
-    setTimeout(()=>setView("preview"),3000);
   }
   return (
     <button className="upload-btn" style={{ marginLeft: "50%", transform: "translate(-50%, 0)", marginTop: "10px" }} onClick={sendToServer}>
@@ -42,3 +41,4 @@ export function SendImages({ quality, selectedImages, setView, setLogout, setSel
     </button>
   );
 }
+
