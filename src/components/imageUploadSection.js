@@ -1,30 +1,56 @@
 export function ImageUploadSection({ setView, setSelectedImages }) {
-  function uploadedImages(e) {
-    if (e.target.files.length > 5) {
-      setView("alert");
-      return;
-    }
-    const files = Array.from(e.target.files);
-    let filesLoaded = 0;
-    const totalFiles = files.length;
-    files.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const base64StringFile = reader.result.split(",")[1];
-        setSelectedImages((prev) => [...prev, { name: file.name, file: base64StringFile, fileType: file.type.split("/")[1] }]);
+ function uploadedImages(e) {
+  const allowedTypes = [
+    "jpeg",
+    "jpg",
+    "png",
+    "webp",
+    "tiff",
+    "avif",
+    "heif",
+    "raw"
+  ];
 
-        filesLoaded++;
-        if (filesLoaded === totalFiles) {
-          setView("loading");
-          setTimeout(() => {
-            setView("selectedImages");
-          }, 3000);
-        }
-      };
-      reader.readAsDataURL(file);
-    });
-    e.target.value = null;
+  if (e.target.files.length > 5) {
+    setView("alert");
+    return;
   }
+
+  const files = Array.from(e.target.files);
+  let filesLoaded = 0;
+  const totalFiles = files.length;
+
+  files.forEach((file) => {
+    const fileExt = file.type.split("/")[1]?.toLowerCase();
+
+    if (!allowedTypes.includes(fileExt)) {
+      setShowNotif(true);
+      setNotifyMsg(`File type not allowed: ${file.name}`);
+      return; // skip this file
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64StringFile = reader.result.split(",")[1];
+      setSelectedImages((prev) => [
+        ...prev,
+        { name: file.name, file: base64StringFile, fileType: fileExt }
+      ]);
+
+      filesLoaded++;
+      if (filesLoaded === totalFiles) {
+        setView("loading");
+        setTimeout(() => {
+          setView("selectedImages");
+        }, 3000);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+
+  e.target.value = null;
+}
+
 
   return (
     <>
