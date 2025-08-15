@@ -21,7 +21,7 @@ console.log(result);
           return;
         }
         
-        setUser(result.user);
+        setUser(result);
         setUser(result);
         setLogout(true);
       } catch (err) {
