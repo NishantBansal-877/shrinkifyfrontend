@@ -3,7 +3,17 @@ import { ImageBox } from "./imageBox";
 import { SendImages } from "./sendImages";
 import { SelectImagesPopup } from "./selectedImagesPopup";
 
-export function ShowSelectedImages({ selectedImages, setSelectedImages, quality, setQuality, setView, setLogout, setPreviewImages }) {
+export function ShowSelectedImages({
+  selectedImages,
+  setSelectedImages,
+  quality,
+  setQuality,
+  setView,
+  setLogout,
+  setPreviewImages,
+  setShowNotif,
+  setNotifyMsg,
+}) {
   return (
     <>
       {selectedImages.length > 0 ? <ImageBox selectedImages={selectedImages} setSelectedImages={setSelectedImages} /> : null}
@@ -17,6 +27,8 @@ export function ShowSelectedImages({ selectedImages, setSelectedImages, quality,
             setView={setView}
             setSelectedImaages={setSelectedImages}
             setPreviewImages={setPreviewImages}
+            setShowNotif={setShowNotif}
+            setNotifyMsg={setNotifyMsg}
           />
         </>
       ) : (
