@@ -679,6 +679,9 @@ width:100%;
   .alert-box{
 width:90%;
   }
+  .preview-section{
+min-width:90vw;
+  }
   .upload-section{
     min-width:80%;
  max-width: calc(min(700px, 80%));
