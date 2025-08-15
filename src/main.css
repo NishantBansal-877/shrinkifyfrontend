@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
 * {
   padding: 0;
   user-select: none;
@@ -6,21 +8,20 @@
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background: #f1f5f9;
+  font-family: "Poppins", sans-serif;
+  background: white;
   color: #1f2937;
 }
 
 .navbar {
   height: 50px;
-  background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   padding: 1rem 2rem;
   position: sticky;
+  background-color: white;
   top: 0;
   z-index: 1000;
 }
-
 .navbar-container {
   position: relative;
   max-width: 1200px;
@@ -93,7 +94,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 50px);
+  min-height: 100vh;
   height: max-content;
   text-align: center;
   background-image: url("../public/background.jpg");
@@ -111,9 +112,27 @@ body {
 .hero p {
   font-size: 1.1rem;
   color: #6b7280;
-  margin-bottom: 2rem;
+  margin-bottom: 1em;
+}
+.hero-title {
+  width: 60%;
+  font-size: 2.5rem;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #6d28d9, #8aa7e0c9, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 1.2s ease-in-out;
 }
 
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  max-width: 650px;
+  margin: 15px auto;
+  animation: fadeInUp 1.5s ease-in-out;
+}
 .upload-btn {
   aspect-ratio: 4/1;
   margin-bottom: 10px;
@@ -176,6 +195,7 @@ body {
   border-radius: 1rem;
   box-shadow: 0 2px 20px rgb(121, 143, 221);
   text-align: center;
+  margin-bottom: 30px;
 }
 .upload-section h1 {
   color: #6d28d9;
@@ -184,6 +204,21 @@ body {
 .upload-section p {
   font-size: 1rem;
   margin: 0;
+}
+.upload-features {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+.upload-feature {
+  text-align: center;
+  width: 100%;
+}
+.upload-feature span {
+  font-size: 1.5rem;
+}
+.upload-feature p {
+  font-size: 0.8rem;
 }
 .flex-column {
   display: flex;
@@ -284,7 +319,7 @@ body {
   background-color: #7c3aed;
   gap: 10px;
   padding: 6px 22px;
-  height: 25%;
+  height: max-content;
 }
 .qualitySelect p {
   color: white;
@@ -292,7 +327,7 @@ body {
   margin: 0;
 }
 #select {
-  height: 50%;
+  height: 100%;
   padding: 2px;
   color: #c3baca;
   font-size: 1rem;
@@ -411,13 +446,12 @@ footer {
 .form-section p {
   color: #6b7280;
   font-size: 0.95rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 form input {
   width: 100%;
   padding: 0.75rem;
-  margin-bottom: 1rem;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 1rem;
@@ -425,9 +459,6 @@ form input {
 
 .form-options {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1.5rem;
   font-size: 0.9rem;
   color: #6b7280;
 }
@@ -738,7 +769,6 @@ label {
 }
 input[type="text"] {
   padding: 0.6rem 0.8rem;
-  margin-bottom: 1rem;
   border: 1.5px solid #d1d5db;
   border-radius: 12px;
   font-size: 1rem;
@@ -1068,7 +1098,8 @@ input[type="text"]:focus {
   max-width: 60vw;
   width: max-content;
   min-width: 30vw;
-  height: 70vh;
+  height: max-content;
+  padding: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
