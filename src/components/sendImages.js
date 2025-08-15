@@ -34,7 +34,7 @@ export function SendImages({ quality, selectedImages, setView, setLogout, setSel
     }
     setSelectedImaages([]);
     setPreviewImages(() => data);
-    setView("preview")
+    setView("preview");
   }
   return (
     <button className="upload-btn" style={{ marginLeft: "50%", transform: "translate(-50%, 0)", marginTop: "10px" }} onClick={sendToServer}>
