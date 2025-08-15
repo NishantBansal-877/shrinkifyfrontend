@@ -1,4 +1,4 @@
-export function ImageUploadSection({ setView, setSelectedImages }) {
+export function ImageUploadSection({ setView, setSelectedImages,setShowNotif,setNotifyMsg }) {
  function uploadedImages(e) {
   const allowedTypes = [
     "jpeg",
