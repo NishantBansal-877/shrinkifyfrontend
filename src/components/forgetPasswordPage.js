@@ -1,21 +1,31 @@
 import { useState, useEffect } from "react";
 
-export function ForgetPasswordPage({ setView, email, setEmail, setMessage }) {
+export function ForgetPasswordPage({ setView, email, setEmail, setMessage, setShowNotif, setNotifyMsg }) {
   const [signupPassword, setSignupPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(null);
+  const [confirmText, setConfirmText] = useState(false);
 
   useEffect(() => {
-    setPasswordMatch(confirmPassword === signupPassword ? true : confirmPassword === "" ? null : false);
+    if (signupPassword && confirmPassword) {
+      setConfirmText(true);
+      setPasswordMatch(confirmPassword === signupPassword ? true : confirmPassword === "" ? null : false);
+    } else {
+      setConfirmText(false);
+    }
   }, [confirmPassword, signupPassword]);
 
   async function handleForgetSubmit() {
     if (!email || !signupPassword || !confirmPassword) {
-      alert("Please fill all fields");
+      setShowNotif(true);
+      setNotifyMsg("Please fill all fields");
+      // alert("Please fill all fields");
       return;
     }
     if (signupPassword !== confirmPassword) {
-      alert("Passwords do not match");
+      setShowNotif(true);
+      setNotifyMsg("Passwords do not match");
+      // alert("Passwords do not match");
       return;
     }
     try {
@@ -30,14 +40,20 @@ export function ForgetPasswordPage({ setView, email, setEmail, setMessage }) {
       const data = JSON.parse(await res.text());
 
       if (data.message === "forget otp sent") {
+        setShowNotif(true);
+        setNotifyMsg("forget otp sent");
         setMessage("forgetOtp");
         setView("otpPage");
       } else {
-        alert(data.message || "password forgetting failed");
+        setShowNotif(true);
+        setNotifyMsg(data.message || "password forgetting failed");
+        // alert(data.message || "password forgetting failed");
       }
     } catch (err) {
       console.error(err);
-      alert("Network error while forgetting in");
+      setShowNotif(true);
+      setNotifyMsg("Network error while forgetting in");
+      // alert("Network error while forgetting in");
     }
   }
 
@@ -48,8 +64,16 @@ export function ForgetPasswordPage({ setView, email, setEmail, setMessage }) {
           <h1>Forget your password</h1>
           <p>Submit your Email to get Otp </p>
 
-          <form onSubmit={handleForgetSubmit} action={"POST"}>
-            <input name="email" type="email" placeholder="example@gmail.com" required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <form onSubmit={handleForgetSubmit}>
+            <input
+              name="email"
+              type="email"
+              placeholder="example@gmail.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+            />
             <input
               name="password"
               type="password"
@@ -57,6 +81,7 @@ export function ForgetPasswordPage({ setView, email, setEmail, setMessage }) {
               required
               value={signupPassword}
               onChange={(e) => setSignupPassword(e.target.value)}
+              autoComplete="new-password"
             />
             <input
               name="confirmPassword"
@@ -65,8 +90,11 @@ export function ForgetPasswordPage({ setView, email, setEmail, setMessage }) {
               required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              autoComplete="new-password"
             />
-            <span id="confirmText">{passwordMatch === null ? "" : passwordMatch ? "equal to password 👍" : "not equal to password ❌"}</span>
+            <span id="confirmText" style={{ visibility: `${confirmText ? "visible" : "hidden"}` }}>
+              {passwordMatch === null ? "" : passwordMatch ? "equal to password 👍" : "not equal to password ❌"}
+            </span>
             <button type="submit">Send Otp</button>
           </form>
         </div>
