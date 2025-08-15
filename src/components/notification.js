@@ -66,8 +66,8 @@ const styles = {
   },
   closeBtn: {
     position: "absolute",
-    top: "-5px",
-    right: "0",
+    top: "-15px",
+    right: "-20px",
     background: "transparent",
     border: "none",
     fontSize: "30px",
