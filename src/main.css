@@ -676,6 +676,9 @@ width:100%;
   .otp-inputs input{
   width: 50px;
   }
+  .alert-box{
+width:100%;
+  }
   .upload-section{
  max-width: calc(min(700px, 80%));
   }
