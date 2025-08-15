@@ -38,7 +38,7 @@ export function Hero({ view, setView, setUser, setLogout, email, setEmail, setSh
         setNotifyMsg={setNotifyMsg}
       />
     ),
-    home: <ImageUploadSection setView={setView} setSelectedImages={setSelectedImages} />,
+    home: <ImageUploadSection setView={setView} setSelectedImages={setSelectedImages} setNotifyMsg={setNotifyMsg} setShowNotif={setShowNotif}/>,
     loading: <LoadingOverlay />,
     login: <Login setLogout={setLogout} setNotifyMsg={setNotifyMsg} setShowNotif={setShowNotif} setUser={setUser} setView={setView} />,
     otpPage: <OtpPage email={email} setView={setView} message={message} setShowNotif={setShowNotif} setNotifyMsg={setNotifyMsg} />,
