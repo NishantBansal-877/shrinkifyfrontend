@@ -28,6 +28,10 @@ export function ImageUploadSection({ setView, setSelectedImages }) {
 
   return (
     <>
+      <h1 class="hero-title">Shrinkify — Lightning Fast Image Compression</h1>
+      <p class="hero-subtitle" style={{ color: "white" }}>
+        Upload your images and get perfectly optimized files in seconds. No quality loss, just smaller sizes.
+      </p>
       <section className="upload-section">
         <h1>Compress Your Images Instantly</h1>
         <p>Smart, fast & free image compression without losing quality.</p>
@@ -41,6 +45,20 @@ export function ImageUploadSection({ setView, setSelectedImages }) {
           <input type="file" id="fileElem" accept="image/*" onChange={uploadedImages} multiple />
         </label>
         <p>Upload only 5 images at a time.</p>
+        <div class="upload-features">
+          <div class="upload-feature">
+            <span>⚡</span>
+            <p>Lightning Fast Compression</p>
+          </div>
+          <div class="upload-feature">
+            <span>🎯</span>
+            <p>No Quality Loss</p>
+          </div>
+          <div class="upload-feature">
+            <span>🛡️</span>
+            <p>Secure & Private</p>
+          </div>
+        </div>
       </section>
     </>
   );
