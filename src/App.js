@@ -16,7 +16,7 @@ export default function App() {
       try {
         const result = await refreshAccess();
 console.log(result);
-        if (result.message === "not valid refreshtoken") {
+        if (result.message === "Invalid refresh token") {
           setView("home");
           return;
         }
@@ -34,7 +34,7 @@ console.log(result);
     try {
       const result = await refreshAccess();
 
-      if (result.message === "not valid refreshtoken") {
+      if (result.message === "Invalid refresh token") {
         setView("home");
         return;
       }
