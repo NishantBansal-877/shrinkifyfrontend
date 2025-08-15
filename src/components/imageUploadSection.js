@@ -22,11 +22,11 @@ export function ImageUploadSection({ setView, setSelectedImages,setShowNotif,set
 
   files.forEach((file) => {
     const fileExt = file.type.split("/")[1]?.toLowerCase();
+      filesLoaded++;
 
     if (!allowedTypes.includes(fileExt)) {
       setShowNotif(true);
       setNotifyMsg(`File type not allowed: ${file.name}`);
-      filesLoaded++;
       return; // skip this file
     }
 
