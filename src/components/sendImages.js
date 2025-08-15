@@ -3,6 +3,7 @@ import { refreshAccess } from "../utils/refreshAccess";
 export function SendImages({ quality, selectedImages, setView, setLogout, setSelectedImaages, setPreviewImages }) {
   async function sendToServer(e) {
     e.preventDefault();
+    setView("loading");
 
     const result = await fetch("https://shrinkifybackend.vercel.app/shrink", {
       method: "POST",
@@ -33,7 +34,6 @@ export function SendImages({ quality, selectedImages, setView, setLogout, setSel
     }
     setSelectedImaages([]);
     setPreviewImages(() => data);
-    setView("loading");
     setTimeout(() => setView("preview"), 3000);
   }
   return (
