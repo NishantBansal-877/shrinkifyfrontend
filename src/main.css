@@ -49,6 +49,8 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   animation: fadeInSlide 0.8s ease-out;
 }
+
+  
 .logo {
   font-weight: bold;
   color: #7c3aed;
@@ -133,6 +135,7 @@ body {
   margin: 15px auto;
   animation: fadeInUp 1.5s ease-in-out;
 }
+
 .upload-btn {
   aspect-ratio: 4/1;
   margin-bottom: 10px;
@@ -196,6 +199,17 @@ body {
   box-shadow: 0 2px 20px rgb(121, 143, 221);
   text-align: center;
   margin-bottom: 30px;
+}
+@media (max-width: 768px) {
+  .welcomeText{
+    display:none,
+      }
+  .hero-title{
+  width: 80%;
+  }
+  .upload-section{
+ max-width: calc(min(700px, 80%));
+  }
 }
 .upload-section h1 {
   color: #6d28d9;
